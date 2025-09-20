@@ -1,0 +1,27 @@
+                             Lu prgramming language
+
+DESCRIPTION
+        The lu prgramming language is a scripting turing complete language. It's
+        not designed to be used to resolve big problems alone, but to help big
+        languages to solve small problems in which this language would fit
+        better.
+
+ABOUT LUC
+        Luc (luc) is the Lu Compiler. 
+
+AUTHOR
+        Designed and implemented by Hugo Coto Flórez.
+
+COPYRIGHT 
+        Copyright (C) 2025  Hugo Coto Flórez
+
+LICENSE
+        Distributed under the GPL license. Note that it can be used in proyects
+        with the same license or with one compatible. This (the opensourceness)
+        is the price of using Lu. 
+
+EXAMPLES
+        Look into ./examples. All the '.lu' files should contain valid lu code.
+
+DEVELOPMENT STATUS
+        Nothing works
