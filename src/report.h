@@ -19,4 +19,20 @@
 #ifndef _H_
 #define _H_
 
-#endif 
+#include "common.h"
+
+#define reportfile "./report.log"
+
+void
+report(const char *format, ...);
+
+#define report(format, ...)                                              \
+        do {                                                             \
+                FILE *file = fopen(reportfile, "a");                     \
+                fprintf(file, "[%s:%s]  ", __FILE_NAME__, __FUNCTION__); \
+                fprintf(file, format, ##__VA_ARGS__);                    \
+                fprintf(file, "\n");                                     \
+                fclose(file);                                            \
+        } while (0)
+
+#endif

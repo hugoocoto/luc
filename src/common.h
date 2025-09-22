@@ -16,7 +16,12 @@
  * For questions or support, contact: hugo.coto@member.fsf.org
  */
 
-#ifndef _H_
-#define _H_
+#ifndef COMMON_H_
+#define COMMON_H_
 
-#endif 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdarg.h>
+
+#endif

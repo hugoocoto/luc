@@ -16,7 +16,14 @@
  * For questions or support, contact: hugo.coto@member.fsf.org
  */
 
-#ifndef _H_
-#define _H_
+#include "lexer.h"
+#include "report.h"
 
-#endif 
+int
+main(int argc, char *argv[])
+{
+        report("----[Start]----");
+        load_lexemes();
+        report("-----[end]-----");
+        return 0;
+}

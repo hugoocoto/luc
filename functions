@@ -1,0 +1,5 @@
+Functions can accept N arguments from both sides
+
+To do so, left arguments are stored in a stack 
+Functions get N arguments from the stack and the M next arguments.
+To eval arguments before read it as an argument, use parenthesis

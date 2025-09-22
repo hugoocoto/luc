@@ -16,28 +16,57 @@
  * For questions or support, contact: hugo.coto@member.fsf.org
  */
 
-#ifndef LEXER_H_
-#define LEXER_H_
-
+#include "lexer.h"
 #include "common.h"
+#include "report.h"
 
-typedef struct Lex {
-        const char *repr;
-        const char *lex;
-        const int id;
-} Lex;
+const char *
+lex_repr(Lex l)
+{
+        return l.repr;
+}
 
-typedef struct Tok {
-        int line;
-        int offset;
-        Lex lexeme;
-        char *repr;
-        struct Tok *next;
-} Tok;
+Tok *
+new_tok()
+{
+        return calloc(1, sizeof(Tok));
+}
 
-const char *lex_repr(Lex);
-Tok *lexer(char *);
-char *tok_repr(Tok *);
-void load_lexemes(void);
+Tok *
+get_tok(char *c)
+{
+}
 
-#endif
+Tok *
+lexer(char *src)
+{
+        char *srcptr = src;
+        Tok *ctok = new_tok();
+        while (*srcptr && *srcptr != EOF) {
+                get_tok(srcptr);
+                ctok = ctok->next;
+        }
+        return ctok;
+}
+
+char *
+tok_repr(Tok *t)
+{
+        return t->repr;
+}
+
+void
+add_lex(Lex l)
+{
+        report("Adding lexeme: `%s` as `%s`", l.lex, l.repr);
+}
+
+#define LEX(l, n) add_lex((Lex) { .lex = (l),   \
+                                  .repr = (#n), \
+                                  .id = __COUNTER__ });
+
+void
+load_lexemes(void)
+{
+/*   */ #include "lexemes"
+}

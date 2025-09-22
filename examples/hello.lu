@@ -1,0 +1,13 @@
+.include io // print
+.include str // copy, append
+
+.start #main
+
+str join = str sl :: str sr {
+        ret (copy sl) append sr
+}
+
+none main = none :: none {
+        stdin print ("hello, " join "World!");
+}
+
