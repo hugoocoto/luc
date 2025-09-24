@@ -1,0 +1,9 @@
+ARGS -> (DEF ("," DEF)* )?
+BLOCK -> "{" (EXPR ";")* "}"
+CALL -> (ID ("," ID)* )? "#" ID (ID ("," ID)* )?
+DEF -> TYPE ID ("=" EXPR)?
+EXPR -> DEF | FUNCDEF | CALL
+FUNCDEF -> TYPE "(" ARGS "::" ARGS ")" EXPR
+ATTRS -> ( "@" ("glob" | "static") "\n" )*
+
+STMT -> EXPR ";"

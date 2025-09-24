@@ -1,13 +1,20 @@
-.include io // print
-.include str // copy, append
+.include io;  // print
+.include str; // copy, append
 
-.start #main
+.start main;
 
-str join = str sl :: str sr {
-        ret (copy sl) append sr
+let join = str ( str sl :: str sr ) {
+        ret (#copy sl) #append sr;
 }
 
-none main = none :: none {
-        stdin print ("hello, " join "World!");
+let hello = none ( none :: none ) {
+        stdout #print ("hello, " #join "World!");
 }
 
+main = hello;
+
+#(int (none :: int a, int b) a + b) 1 2;
+
+int (none::none) get_num;
+
+get_num = int (none :: none) #random 1 100;
