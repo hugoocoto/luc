@@ -1,43 +1,74 @@
-/* This file is part of Lu programming language
- *
- * Copyright (C) 2025  Hugo Coto Flórez
- *
- * Lu is free software; you can redistribute it and/or modify it under the terms
- * of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or any later version.
- *
- * Lu is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY of FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with
- * Lu. If not, see <https://www.gnu.org/licenses/>
- *
- * For questions or support, contact: hugo.coto@member.fsf.org
- */
-
 #ifndef LEXER_H_
 #define LEXER_H_
 
-#include "common.h"
-
-typedef struct Lex {
-        const char *repr;
-        const char *lex;
-        const int id;
+typedef enum {
+        LPARENT,
+        RPARENT,
+        LBRACE,
+        RBRACE,
+        LBRACKET,
+        RBRACKET,
+        HASH,
+        COMMA,
+        DOT,
+        MINUS,
+        PLUS,
+        SEMICOLON,
+        COLON,
+        COLON_COLON,
+        SLASH,
+        STAR,
+        BANG,
+        BANG_EQUAL,
+        EQUAL,
+        EQUAL_EQUAL,
+        GREATER,
+        GREATER_EQUAL,
+        LESS,
+        LESS_EQUAL,
+        IDENTIFIER,
+        STRING,
+        NUMBER,
+        AND,
+        CLASS,
+        ELSE,
+        FALSE,
+        FUNCTION,
+        VAR,
+        FOR,
+        IF,
+        NIL,
+        OR,
+        AT,
+        EXTERN,
+        RETURN,
+        TRUE,
+        WHILE,
+        END_OF_FILE,
+        BITWISE_AND,
+        BITWISE_OR,
+        BITWISE_XOR,
+        BITWISE_NOT,
+        PLUS_PLUS,
+        MINUS_MINUS,
+        SHIFT_LEFT,
+        SHIFT_RIGHT,
+        UNKNOWN,
 } Lex;
 
 typedef struct Tok {
-        int line;
-        int offset;
         Lex lexeme;
-        char *repr;
+        union {
+                char *text;
+                double num;
+        } as;
+        int line, offset;
         struct Tok *next;
 } Tok;
 
-const char *lex_repr(Lex);
-Tok *lexer(char *);
-char *tok_repr(Tok *);
-void load_lexemes(void);
+Tok *lexer(char *str);
+void tokprint(Tok *);
+void tokfree(Tok *);
+const char *get_lex_repr(Lex l);
 
 #endif

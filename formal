@@ -1,9 +1,46 @@
-ARGS -> (DEF ("," DEF)* )?
-BLOCK -> "{" (EXPR ";")* "}"
-CALL -> (ID ("," ID)* )? "#" ID (ID ("," ID)* )?
-DEF -> TYPE ID ("=" EXPR)?
-EXPR -> DEF | FUNCDEF | CALL
+ARGS    -> (VARDEF ("," VARDEF)* )?
+CALL    -> (ID ("," ID)* )? "#" ID (ID ("," ID)* )?
+VARDEF  -> TYPE ID ("=" EXPR)?
 FUNCDEF -> TYPE "(" ARGS "::" ARGS ")" EXPR
-ATTRS -> ( "@" ("glob" | "static") "\n" )*
+ATTRS   -> ( "@" ("glob" | "static") "\n" )*
+ASSIGN  -> ID "=" EXPR
 
-STMT -> EXPR ";"
+AND     -> EXPR "&&" EXPR
+OR      -> EXPR "||" EXPR
+NOT     -> "!" EXPR
+MINUS   -> "-" EXPR
+EQ      -> EXPR "==" EXPR
+NEQ     -> EXPR "!=" EXPR
+CMP     -> EXPR (">" | "<" | ">=" | "<=") EXPR
+TERM    -> EXPR ("+" | "-") EXPR
+FACTOR  -> EXPR ("/" | "*") EXPR
+
+LIT     -> NUM | STR | "true" | "false" | ID
+
+GROUP   -> "(" EXPR ")"
+
+BINOP   -> AND | OR
+UNOP    -> NOT | MINUS
+
+EXPR    -> VARDEF | FUNCDEF | CALL
+
+BLOCK   -> "{" (EXPR ";")* "}"
+
+STMT    -> (EXPR ";") | BLOCK
+
+PROGRAM -> STMT* (EOF | NULLCHAR)
+
+
+## EXPR
+
+## STMT
+- declaration -> vardecl | funcdecl | stmt
+- vardecl -> "var" IDENTIFIER ("=" expr)? ";"
+- funcdecl -> "fun" IDENTIFIER "(" expr? ("," expr)* ")" block
+- stmt -> block | assert | exprstmt | if | while | return
+- if -> "if" "(" expr ")" declaration ("else" declaration)?
+- while -> "while" "(" expr ")" declaration
+- return -> "return" expr ";"
+- assert -> "assert" expr ";"
+- exprstmt -> expr ";"
+- block -> "{" (stmt ";")* "}"

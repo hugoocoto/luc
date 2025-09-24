@@ -1,3 +1,0 @@
-LEX( "(", right parent )
-LEX( ")", left parent )
-LEX( "as", as )

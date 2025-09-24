@@ -1,5 +1,0 @@
-[main.c:main]  ----[Start]----
-[lexer.c:add_lex]  Adding lexeme: `(` as `right parent`
-[lexer.c:add_lex]  Adding lexeme: `)` as `left parent`
-[lexer.c:add_lex]  Adding lexeme: `var` as `var`
-[main.c:main]  -----[end]-----

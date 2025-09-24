@@ -1,29 +1,17 @@
-/* This file is part of Lu programming language
- *
- * Copyright (C) 2025  Hugo Coto Flórez
- *
- * Lu is free software; you can redistribute it and/or modify it under the terms
- * of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or any later version.
- *
- * Lu is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY of FITNESS FOR
- * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with
- * Lu. If not, see <https://www.gnu.org/licenses/>
- *
- * For questions or support, contact: hugo.coto@member.fsf.org
- */
-
 #include "lexer.h"
-#include "report.h"
+
+#define $(a) #a "\n"
+
+char *program = 
+$(1.23 + 23434.2323 == 3)
+$(algo = 23434.2323 == b_eta);
+
 
 int
-main(int argc, char *argv[])
+main()
 {
-        report("----[Start]----");
-        load_lexemes();
-        report("-----[end]-----");
+        Tok *tokens = lexer(program);
+        tokprint(tokens);
+        tokfree(tokens);
         return 0;
 }

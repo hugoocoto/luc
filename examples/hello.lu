@@ -13,6 +13,13 @@ let hello = none ( none :: none ) {
 
 main = hello;
 
+
+
+
+
+
+
+
 #(int (none :: int a, int b) a + b) 1 2;
 
 int (none::none) get_num;
